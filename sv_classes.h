@@ -22,14 +22,14 @@
 
 /// настройки для потока
 struct SV_attribute_values{
-    std::string svID = "ABCDEFG";
-    std::string datSet = "DATASET_";
+    std::string svID = "ABCDEFGrtdrtertdfgdfgdfgdfgdf";
+    std::string datSet = "DATASET_cvxcbcbcvbgbcfgfghfgh";
     uint16_t smpCnt = 786;
     uint32_t confrev = 665;
     uint64_t refrTm = 999;
     uint8_t smpSynch = 111;
     uint16_t smpRate = 1;
-    uint32_t noASDU = 2;
+    uint32_t noASDU = 1;
     instant_values val;
 };
 

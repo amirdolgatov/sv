@@ -249,7 +249,7 @@ public:
         u_char shift = 0;
         memcpy(frame_ptr, &this->tag, this->tagSize);            /// Копируем тег в буфер
         shift += tagSize;                                  std::cout << "\t\t" << std::hex << "tag " << int(this->tag[0]) <<" "<< int(this->tag[1]) << std::endl;  /// перевод указателя на следующую ячейку
-        memcpy(frame_ptr, &this->length, this->lengthSize);                 /// Копируем поле length в буфер
+        memcpy(frame_ptr + shift, &this->length, this->lengthSize);                 /// Копируем поле length в буфер
         shift += this->lengthSize;                                    std::cout << "\t\t" << std::hex << "len " << int(this->length)<< std::dec  << " = " << (this->length) << std::endl;  /// перевод указателя на следующую ячейку
         set_value((struct instant_values*)(frame_ptr + shift));
 

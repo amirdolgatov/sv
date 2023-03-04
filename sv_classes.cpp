@@ -103,7 +103,7 @@ u_char* SV_generator::traverse(Attribute *attr, u_char* frame_ptr) {
 /// временный метод ///
 void SV_generator:: print_frame(){
     std::cout << " FRAME " << std::endl;
-    for (int i = 0; i < savPdu.length + 14; ++i) {
+    for (int i = 0; i < savPdu.length + 50; ++i) {
         std::cout << std::hex << " " << (int) this->frame.raw_buffer[i] << " ";
         if (i%16 == 0)
             std::cout << std::endl;

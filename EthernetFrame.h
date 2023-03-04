@@ -36,6 +36,9 @@ public:
         memcpy(this->eh->ether_dhost, &(settings.ether_dhost), 6);
         memcpy(this->eh->ether_shost, &(settings.ether_shost), 6);
         memcpy(&this->eh->ether_type, &(settings.ether_type), 2);
+        for (int i = 14; i < 500; ++i) {
+            raw_buffer[i] = 't';
+        }
     }
 
     EthernetFrame(){}
@@ -47,7 +50,7 @@ public:
     /// Поля
     struct ether_header *eh = (struct ether_header *) raw_buffer;
 
-    u_char raw_buffer[1500];
+    u_char raw_buffer[1500] = {"t"};
 
     //u_char *current_ptr = &raw_buffer[14];
 

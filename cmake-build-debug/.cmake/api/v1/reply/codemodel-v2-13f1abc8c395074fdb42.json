@@ -39,7 +39,7 @@
 				{
 					"directoryIndex" : 0,
 					"id" : "SV_Project::@6890427a1f51a3e7e1df",
-					"jsonFile" : "target-SV_Project-Debug-dd80bde27db8599b1072.json",
+					"jsonFile" : "target-SV_Project-Debug-6133a6f44a82fe10247a.json",
 					"name" : "SV_Project",
 					"projectIndex" : 0
 				}
@@ -49,8 +49,8 @@
 	"kind" : "codemodel",
 	"paths" : 
 	{
-		"build" : "/home/amir/Projects/SV_Project/cmake-build-debug",
-		"source" : "/home/amir/Projects/SV_Project"
+		"build" : "/home/amir/Projects/sv_project/sv/cmake-build-debug",
+		"source" : "/home/amir/Projects/sv_project/sv"
 	},
 	"version" : 
 	{
