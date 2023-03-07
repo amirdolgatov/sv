@@ -22,27 +22,27 @@
 
 /// настройки для потока
 struct SV_attribute_values{
-    std::string svID = "ABCDEFGrtdrtertdfgdfgdfgdfgdf";
-    std::string datSet = "DATASET_cvxcbcbcvbgbcfgfghfgh";
-    uint16_t smpCnt = 786;
-    uint32_t confrev = 665;
-    uint64_t refrTm = 999;
-    uint8_t smpSynch = 111;
-    uint16_t smpRate = 1;
-    uint32_t noASDU = 1;
+    std::string svID = "ABCDEljkjkljj;ljljljljlkklgjhgjhgkjkFG';'l";   // 7 *
+    std::string datSet = "DATAS[op[o[pop[o[po[poET"; // 7
+    uint16_t smpCnt = 786;          // 2
+    uint32_t confrev = 665;         // 4
+    uint64_t refrTm = 999;          // 8
+    uint8_t smpSynch = 111;         // 1
+    uint16_t smpRate = 1;           // 2
+    uint32_t noASDU = 4;            // 4
     instant_values val;
 };
 
 ///  атрибуты пакета которым необходимо задавать значение
 struct SV_attributes{
-    Simple_attribute svID;
-    Simple_attribute datSet;
-    TSimple_attribute<uint16_t> smpCnt;
-    TSimple_attribute<uint32_t> confrev;
-    TSimple_attribute<uint64_t> refrTm;
-    TSimple_attribute<uint8_t> smpSynch;
-    TSimple_attribute<uint16_t> smpRate;
-    Simple_attribute_seq seq_of_Data;
+    String_attribute svID;
+    String_attribute datSet;
+    Type_attribute<uint16_t> smpCnt;
+    Type_attribute<uint32_t> confrev;
+    Type_attribute<uint64_t> refrTm;
+    Type_attribute<uint8_t> smpSynch;
+    Type_attribute<uint16_t> smpRate;
+    Seq_of_Data seq_of_Data;
 };
 
 struct SV_header{
@@ -87,11 +87,11 @@ public:
     Container seqASDU = Container(0xA2);
     Container ASDU = Container(0x30);
 
-    TSimple_attribute<uint32_t> noASDU;
+    Type_attribute<uint32_t> noASDU;
 
     SV_attributes initialize_ASDU(SV_attribute_values& source);
 
-    Container build_SV_block();
+    Container build_SV_block(void);
 
     /// методы
 

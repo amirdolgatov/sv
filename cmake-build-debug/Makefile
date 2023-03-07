@@ -129,6 +129,30 @@ SV_Project/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/SV_Project.dir/build.make CMakeFiles/SV_Project.dir/build
 .PHONY : SV_Project/fast
 
+SV_Frame.o: SV_Frame.cpp.o
+.PHONY : SV_Frame.o
+
+# target to build an object file
+SV_Frame.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SV_Project.dir/build.make CMakeFiles/SV_Project.dir/SV_Frame.cpp.o
+.PHONY : SV_Frame.cpp.o
+
+SV_Frame.i: SV_Frame.cpp.i
+.PHONY : SV_Frame.i
+
+# target to preprocess a source file
+SV_Frame.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SV_Project.dir/build.make CMakeFiles/SV_Project.dir/SV_Frame.cpp.i
+.PHONY : SV_Frame.cpp.i
+
+SV_Frame.s: SV_Frame.cpp.s
+.PHONY : SV_Frame.s
+
+# target to generate assembly for a file
+SV_Frame.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SV_Project.dir/build.make CMakeFiles/SV_Project.dir/SV_Frame.cpp.s
+.PHONY : SV_Frame.cpp.s
+
 main.o: main.cpp.o
 .PHONY : main.o
 
@@ -186,6 +210,9 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... SV_Project"
+	@echo "... SV_Frame.o"
+	@echo "... SV_Frame.i"
+	@echo "... SV_Frame.s"
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"

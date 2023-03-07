@@ -85,6 +85,12 @@
 		<Unit filename="/home/amir/Projects/sv_project/sv/EthernetFrame.h">
 			<Option target="SV_Project"/>
 		</Unit>
+		<Unit filename="/home/amir/Projects/sv_project/sv/SV_Frame.cpp">
+			<Option target="SV_Project"/>
+		</Unit>
+		<Unit filename="/home/amir/Projects/sv_project/sv/SV_Frame.h">
+			<Option target="SV_Project"/>
+		</Unit>
 		<Unit filename="/home/amir/Projects/sv_project/sv/SV_attributes.h">
 			<Option target="SV_Project"/>
 		</Unit>

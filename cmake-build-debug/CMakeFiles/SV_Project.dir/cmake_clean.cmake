@@ -1,4 +1,6 @@
 file(REMOVE_RECURSE
+  "CMakeFiles/SV_Project.dir/SV_Frame.cpp.o"
+  "CMakeFiles/SV_Project.dir/SV_Frame.cpp.o.d"
   "CMakeFiles/SV_Project.dir/main.cpp.o"
   "CMakeFiles/SV_Project.dir/main.cpp.o.d"
   "CMakeFiles/SV_Project.dir/sv_classes.cpp.o"

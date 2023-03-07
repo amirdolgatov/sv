@@ -8,6 +8,7 @@ set(CMAKE_DEPENDS_LANGUAGES
 
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
+  "/home/amir/Projects/sv_project/sv/SV_Frame.cpp" "CMakeFiles/SV_Project.dir/SV_Frame.cpp.o" "gcc" "CMakeFiles/SV_Project.dir/SV_Frame.cpp.o.d"
   "/home/amir/Projects/sv_project/sv/main.cpp" "CMakeFiles/SV_Project.dir/main.cpp.o" "gcc" "CMakeFiles/SV_Project.dir/main.cpp.o.d"
   "/home/amir/Projects/sv_project/sv/sv_classes.cpp" "CMakeFiles/SV_Project.dir/sv_classes.cpp.o" "gcc" "CMakeFiles/SV_Project.dir/sv_classes.cpp.o.d"
   )

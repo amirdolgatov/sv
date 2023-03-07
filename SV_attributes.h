@@ -14,6 +14,7 @@
 #include <vector>
 #include <cstring>
 #include <byteswap.h>
+#include <map>
 
 ///
 
@@ -100,13 +101,13 @@ public:
 
 /// шаблонный класс, для обычных атрибутов типа svID, smpCnt ("атрибут - не контейнер")
 template <typename T>
-class TSimple_attribute: public Attribute {
+class Type_attribute: public Attribute {
 public:
 
     /// Конструктор
     /// инициализация через конструктор сопровождается определением размера данных
 
-    TSimple_attribute(T &atrr, uint8_t _tag) : Attribute(
+    Type_attribute(T &atrr, uint8_t _tag) : Attribute(
             _tag) {          ///перед созданием производного класса вызывается конструктор базового класса
         this->value = atrr;
         this->length = sizeof(this->value);
@@ -119,7 +120,7 @@ public:
             this->tagSize = 2;
         }
 
-        //std::cout << "Simple_attribute( ):  " << " " << int(this->tag) << " " << this->value << " " << this->length << std::endl;
+        //std::cout << "String_attribute( ):  " << " " << int(this->tag) << " " << this->value << " " << this->length << std::endl;
     }
 
     /// в буфер фрейма переносится тэг, длина и поле value
@@ -138,7 +139,7 @@ public:
         std::cout << "\t\t current attr - " << std::hex << int(this->tag[0]) << std::endl;
     }
 
-    TSimple_attribute() {}
+    Type_attribute() {}
 
     /// метод принимает указатель на байт в ethernet буфере и записывает по данному адресу value
     /// возвращается указатель на свободный блок памяти, следующий за значением value
@@ -173,11 +174,11 @@ public:
     T value;
 };
 
-class Simple_attribute: public Attribute{
+class String_attribute: public Attribute{
 public:
     /// Конструктор
 
-    Simple_attribute(std::string& str, uint8_t _tag): Attribute(_tag) {  ///перед созданием производного класса вызывается конструктор базового класса
+    String_attribute(std::string& str, uint8_t _tag): Attribute(_tag) {  ///перед созданием производного класса вызывается конструктор базового класса
         this->value = str;
         this->length = str.size();
     std::cout << "string attr :: -> " << this->value <<" " << this->length << std::endl;
@@ -216,7 +217,7 @@ public:
     void visit() override {
         std::cout << "\t\t current attr - " << std::hex << int(this->tag[0]) << std::endl;
     }
-    Simple_attribute(){};
+    String_attribute(){};
 
 
     std::string value;
@@ -224,7 +225,7 @@ public:
 };
 
 
-class Simple_attribute_seq: public Attribute {
+class Seq_of_Data: public Attribute {
 public:
 
     /// Поля
@@ -233,12 +234,12 @@ public:
 
     /// Конструктор
 
-    Simple_attribute_seq(uint8_t _tag): Attribute(_tag) {
+    Seq_of_Data(uint8_t _tag): Attribute(_tag) {
         this->values = {0};
         this->length = sizeof (instant_values);
     }
 
-    Simple_attribute_seq(){}
+    Seq_of_Data(){}
 
     /// Методы
 
