@@ -85,6 +85,9 @@
 		<Unit filename="/home/amir/Projects/sv_project/sv/EthernetFrame.h">
 			<Option target="SV_Project"/>
 		</Unit>
+		<Unit filename="/home/amir/Projects/sv_project/sv/Raw_Socket.cpp">
+			<Option target="SV_Project"/>
+		</Unit>
 		<Unit filename="/home/amir/Projects/sv_project/sv/SV_Frame.cpp">
 			<Option target="SV_Project"/>
 		</Unit>
@@ -95,6 +98,9 @@
 			<Option target="SV_Project"/>
 		</Unit>
 		<Unit filename="/home/amir/Projects/sv_project/sv/main.cpp">
+			<Option target="SV_Project"/>
+		</Unit>
+		<Unit filename="/home/amir/Projects/sv_project/sv/raw_socket.h">
 			<Option target="SV_Project"/>
 		</Unit>
 		<Unit filename="/home/amir/Projects/sv_project/sv/sv_classes.cpp">

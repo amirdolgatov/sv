@@ -19,7 +19,6 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
-#include <time.h>
 
 #include <sys/ioctl.h>
 #include <arpa/inet.h>
@@ -49,35 +48,42 @@ public:
         memcpy(eh->ether_shost, &(eth_hdr.ether_shost), 6);
         memcpy(&eh->ether_type, &ether_type, 2);
 
-        if (VLAN_ID != 0){                                                        // if vlan is defined
+        this->frame_payload = this->raw_buffer + sizeof(struct ether_header);     // shift of pointer to payload
+        this->frame_size += sizeof(struct ether_header);
+
+        if (VLAN_ID != 0){                                                        // checking tagged or untagged frame
             struct VLAN_tag *tag = (struct VLAN_tag*) &raw_buffer[12];
             tag->TPID = bswap_16(TPID_802_1_Q);                                   // 0x8100
             tag->TCI = bswap_16((VLAN_Priority << 13) | VLAN_ID);                 // Priority + VID
-            memcpy(&raw_buffer[12] + sizeof(struct VLAN_tag), &(eth_hdr.ether_type), 2);
+            memcpy(&raw_buffer[12] + sizeof(struct VLAN_tag), &ether_type, 2);
+
+            this->frame_payload += sizeof(struct VLAN_tag);
+            this->frame_size += sizeof(struct VLAN_tag);
         }
-        for (int i = 16; i < 1000; ++i) {
+        for (int i = this->frame_size; i < 500; ++i) {
             raw_buffer[i] = 't';
         }
     }
 
     EthernetFrame(){}
 
-public:
-    u_char *raw_payload(){
-        return raw_buffer + sizeof(struct ether_header) +  sizeof(struct VLAN_tag);
-    }
     /// Поля
 
-
+    u_char *frame_payload;
     u_char raw_buffer[1500];
-
+    int frame_size = 0;
 
     //u_char *current_ptr = &raw_buffer[14];
 
     /// Методы
 
+    u_char *get_raw_buffer(){
+        return this->raw_buffer;
+    }
 
-
+    int get_frame_size(){
+        return frame_size;
+    }
 
 };
 

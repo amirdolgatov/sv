@@ -33,16 +33,7 @@ const std::map<int, std::string> sv_tags = {
 };
 
 /// структура хранит мгновенные значения токов и напряжений
-struct instant_values {
-    int32_t Ia{77}; int32_t Ia_Q{0};
-    int32_t Ib{0}; int32_t Ib_Q{0};
-    int32_t Ic{0}; int32_t Ic_Q{0};
-    int32_t In{0}; int32_t In_Q{0};
-    int32_t Ua{0}; int32_t Ua_Q{0};
-    int32_t Ub{0}; int32_t Ub_Q{0};
-    int32_t Uc{0}; int32_t Uc_Q{0};
-    int32_t Un{0}; int32_t Un_Q{0};
-};
+
 
 /// абстрактный класс Attribute - родитель всех разновидностей атрибутов
 class Attribute {
@@ -53,12 +44,15 @@ public:
     uint16_t length{0};
     uint8_t tagSize{1};
     uint8_t lengthSize{1};
-    std::list<Attribute*> list_of_children;
+    std::list<Attribute *> list_of_children;
 
     /// Методы
 
     virtual u_char record_TLV(u_char *frame_ptr) = 0;
-    virtual void visit() = 0;
+    void visit() {
+        std::cout << " VISIT :: tag is " << std::hex << (int)this->tag[0] << std::endl;
+        std::cout << " Size of list " << std::hex << (int)this->list_of_children.size() << std::endl;
+    }
 
     /// Конструктор
 
@@ -84,18 +78,18 @@ public:
         uint16_t temp;
         memcpy(frame_ptr, &this->tag, this->tagSize);   std::cout << "\t\t" << std::hex << "tag " << int(this->tag[0]) <<" "<< int(this->tag[1]) << std::endl;
         shift+=tagSize;
-            std::cout << "\t\t" << std::hex << "len " << int(this->length) << std::dec  << " = " << (this->length) << " tagSize " << int(this->tagSize) << std::endl;
-        if (lengthSize = 1)
+        std::cout << "\t\t" << std::hex << "len " << int(this->length) << std::dec  << " = " << (this->length) << " tagSize " << int(this->tagSize) << " length size - " << (int)this->lengthSize << std::endl;
+        if (lengthSize == 1){
+            std:: cout << "TAG_SIZE = 1" << std::endl;
             memcpy(frame_ptr + shift, &this->length, this->lengthSize);
-        else
+        }
+        else{
+            std:: cout << "TAG_SIZE = 2" << std::endl;
             memcpy(frame_ptr + shift, &(temp = bswap_16(this->length)), this->lengthSize);
+        }
         shift+=this->lengthSize;
         return shift;
     };
-
-    void visit() override{
-        std:: cout << "current attr --- " << std:: hex << int(this->tag[0]) << std::endl;
-    }
 
 };
 
@@ -107,9 +101,9 @@ public:
     /// Конструктор
     /// инициализация через конструктор сопровождается определением размера данных
 
-    Type_attribute(T &atrr, uint8_t _tag) : Attribute(
+    Type_attribute(T &value, uint8_t _tag) : Attribute(
             _tag) {          ///перед созданием производного класса вызывается конструктор базового класса
-        this->value = atrr;
+        this->value = value;
         this->length = sizeof(this->value);
 
         if (this->length > 128 && this->length <= 256) {             ///требуется добавление метки 0x81
@@ -135,9 +129,6 @@ public:
         return shift += this->length;
     }
 
-    void visit(void) override {
-        std::cout << "\t\t current attr - " << std::hex << int(this->tag[0]) << std::endl;
-    }
 
     Type_attribute() {}
 
@@ -214,9 +205,6 @@ public:
 
     size_t getsize() {return this->value.size();}
 
-    void visit() override {
-        std::cout << "\t\t current attr - " << std::hex << int(this->tag[0]) << std::endl;
-    }
     String_attribute(){};
 
 
@@ -230,13 +218,26 @@ public:
 
     /// Поля
 
-    instant_values values;
+    struct instant_values {
+        int32_t Ia{111}; int32_t Ia_Q{111};
+        int32_t Ib{111}; int32_t Ib_Q{111};
+        int32_t Ic{111}; int32_t Ic_Q{111};
+        int32_t In{111}; int32_t In_Q{111};
+        int32_t Ua{111}; int32_t Ua_Q{111};
+        int32_t Ub{111}; int32_t Ub_Q{111};
+        int32_t Uc{111}; int32_t Uc_Q{111};
+        int32_t Un{111}; int32_t Un_Q{111};
+    } values;
+
+
+
 
     /// Конструктор
 
     Seq_of_Data(uint8_t _tag): Attribute(_tag) {
         this->values = {0};
-        this->length = sizeof (instant_values);
+        this->length = sizeof(struct instant_values);
+        this->values.Ia = 787;
     }
 
     Seq_of_Data(){}
@@ -269,8 +270,9 @@ public:
         frame_ptr->Uc = bswap_32(this->values.Uc);  frame_ptr->Uc_Q = bswap_32(this->values.Uc_Q);
         frame_ptr->Un = bswap_32(this->values.Un);  frame_ptr->Un_Q = bswap_32(this->values.Un_Q);
 
+        std::cout << " SET VALUE - Ia\t\t" << std::hex << this->values.Ia << std::endl;
+        std::cout << " SET VALUE - Ib\t\t" << std::hex << this->values.Ib << std::endl;
+        std::cout << " SET VALUE - Ic\t\t" << std::hex << this->values.Ic << std::endl;
     }
-
-    void visit() override {}
 
 };

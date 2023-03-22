@@ -129,6 +129,30 @@ SV_Project/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/SV_Project.dir/build.make CMakeFiles/SV_Project.dir/build
 .PHONY : SV_Project/fast
 
+Raw_Socket.o: Raw_Socket.cpp.o
+.PHONY : Raw_Socket.o
+
+# target to build an object file
+Raw_Socket.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SV_Project.dir/build.make CMakeFiles/SV_Project.dir/Raw_Socket.cpp.o
+.PHONY : Raw_Socket.cpp.o
+
+Raw_Socket.i: Raw_Socket.cpp.i
+.PHONY : Raw_Socket.i
+
+# target to preprocess a source file
+Raw_Socket.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SV_Project.dir/build.make CMakeFiles/SV_Project.dir/Raw_Socket.cpp.i
+.PHONY : Raw_Socket.cpp.i
+
+Raw_Socket.s: Raw_Socket.cpp.s
+.PHONY : Raw_Socket.s
+
+# target to generate assembly for a file
+Raw_Socket.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SV_Project.dir/build.make CMakeFiles/SV_Project.dir/Raw_Socket.cpp.s
+.PHONY : Raw_Socket.cpp.s
+
 SV_Frame.o: SV_Frame.cpp.o
 .PHONY : SV_Frame.o
 
@@ -210,6 +234,9 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... SV_Project"
+	@echo "... Raw_Socket.o"
+	@echo "... Raw_Socket.i"
+	@echo "... Raw_Socket.s"
 	@echo "... SV_Frame.o"
 	@echo "... SV_Frame.i"
 	@echo "... SV_Frame.s"
