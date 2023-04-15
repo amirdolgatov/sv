@@ -8,18 +8,18 @@
 		<Option virtualFolders="CMake Files\;"/>
 		<Build>
 			<Target title="all">
-				<Option working_dir="/home/amir/Projects/sv_project/sv/cmake-build-debug"/>
+				<Option working_dir="/home/amir/Projects/sv/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j4 -f &quot;/home/amir/Projects/sv_project/sv/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
-					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/amir/Projects/sv_project/sv/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j4 -f &quot;/home/amir/Projects/sv_project/sv/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j4 -f &quot;/home/amir/Projects/sv_project/sv/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/amir/Projects/sv/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/amir/Projects/sv/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/amir/Projects/sv/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/amir/Projects/sv/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="SV_Project">
-				<Option output="/home/amir/Projects/sv_project/sv/cmake-build-debug/SV_Project" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="/home/amir/Projects/sv_project/sv/cmake-build-debug"/>
+				<Option output="/home/amir/Projects/sv/cmake-build-debug/SV_Project" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/amir/Projects/sv/cmake-build-debug"/>
 				<Option object_output="./"/>
 				<Option type="1"/>
 				<Option compiler="gcc"/>
@@ -33,15 +33,15 @@
 					<Add directory="/usr/include"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j4 -f &quot;/home/amir/Projects/sv_project/sv/cmake-build-debug/Makefile&quot;  VERBOSE=1 SV_Project"/>
-					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/amir/Projects/sv_project/sv/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j4 -f &quot;/home/amir/Projects/sv_project/sv/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j4 -f &quot;/home/amir/Projects/sv_project/sv/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/amir/Projects/sv/cmake-build-debug/Makefile&quot;  VERBOSE=1 SV_Project"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/amir/Projects/sv/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/amir/Projects/sv/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/amir/Projects/sv/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="SV_Project/fast">
-				<Option output="/home/amir/Projects/sv_project/sv/cmake-build-debug/SV_Project" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="/home/amir/Projects/sv_project/sv/cmake-build-debug"/>
+				<Option output="/home/amir/Projects/sv/cmake-build-debug/SV_Project" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/amir/Projects/sv/cmake-build-debug"/>
 				<Option object_output="./"/>
 				<Option type="1"/>
 				<Option compiler="gcc"/>
@@ -55,61 +55,61 @@
 					<Add directory="/usr/include"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j4 -f &quot;/home/amir/Projects/sv_project/sv/cmake-build-debug/Makefile&quot;  VERBOSE=1 SV_Project/fast"/>
-					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/amir/Projects/sv_project/sv/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j4 -f &quot;/home/amir/Projects/sv_project/sv/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j4 -f &quot;/home/amir/Projects/sv_project/sv/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/amir/Projects/sv/cmake-build-debug/Makefile&quot;  VERBOSE=1 SV_Project/fast"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/amir/Projects/sv/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/amir/Projects/sv/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/amir/Projects/sv/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="edit_cache">
-				<Option working_dir="/home/amir/Projects/sv_project/sv/cmake-build-debug"/>
+				<Option working_dir="/home/amir/Projects/sv/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j4 -f &quot;/home/amir/Projects/sv_project/sv/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
-					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/amir/Projects/sv_project/sv/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j4 -f &quot;/home/amir/Projects/sv_project/sv/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j4 -f &quot;/home/amir/Projects/sv_project/sv/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/amir/Projects/sv/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/amir/Projects/sv/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/amir/Projects/sv/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/amir/Projects/sv/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="rebuild_cache">
-				<Option working_dir="/home/amir/Projects/sv_project/sv/cmake-build-debug"/>
+				<Option working_dir="/home/amir/Projects/sv/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j4 -f &quot;/home/amir/Projects/sv_project/sv/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
-					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/amir/Projects/sv_project/sv/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j4 -f &quot;/home/amir/Projects/sv_project/sv/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j4 -f &quot;/home/amir/Projects/sv_project/sv/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/amir/Projects/sv/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/amir/Projects/sv/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/amir/Projects/sv/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/amir/Projects/sv/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 		</Build>
-		<Unit filename="/home/amir/Projects/sv_project/sv/EthernetFrame.h">
+		<Unit filename="/home/amir/Projects/sv/ Sender.h">
 			<Option target="SV_Project"/>
 		</Unit>
-		<Unit filename="/home/amir/Projects/sv_project/sv/Raw_Socket.cpp">
+		<Unit filename="/home/amir/Projects/sv/EthernetFrame.h">
 			<Option target="SV_Project"/>
 		</Unit>
-		<Unit filename="/home/amir/Projects/sv_project/sv/SV_Frame.cpp">
+		<Unit filename="/home/amir/Projects/sv/Raw_Socket.cpp">
 			<Option target="SV_Project"/>
 		</Unit>
-		<Unit filename="/home/amir/Projects/sv_project/sv/SV_Frame.h">
+		<Unit filename="/home/amir/Projects/sv/SV_Frame.cpp">
 			<Option target="SV_Project"/>
 		</Unit>
-		<Unit filename="/home/amir/Projects/sv_project/sv/SV_attributes.h">
+		<Unit filename="/home/amir/Projects/sv/SV_Frame.h">
 			<Option target="SV_Project"/>
 		</Unit>
-		<Unit filename="/home/amir/Projects/sv_project/sv/main.cpp">
+		<Unit filename="/home/amir/Projects/sv/SV_attributes.h">
 			<Option target="SV_Project"/>
 		</Unit>
-		<Unit filename="/home/amir/Projects/sv_project/sv/raw_socket.h">
+		<Unit filename="/home/amir/Projects/sv/main.cpp">
 			<Option target="SV_Project"/>
 		</Unit>
-		<Unit filename="/home/amir/Projects/sv_project/sv/sv_classes.cpp">
+		<Unit filename="/home/amir/Projects/sv/raw_socket.h">
 			<Option target="SV_Project"/>
 		</Unit>
-		<Unit filename="/home/amir/Projects/sv_project/sv/sv_classes.h">
+		<Unit filename="/home/amir/Projects/sv/sv_classes.cpp">
 			<Option target="SV_Project"/>
 		</Unit>
-		<Unit filename="/home/amir/Projects/sv_project/sv/CMakeLists.txt">
+		<Unit filename="/home/amir/Projects/sv/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\"/>
 		</Unit>
 	</Project>

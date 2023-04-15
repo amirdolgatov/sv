@@ -37,7 +37,7 @@ struct savPdu_entries{
     Type_attribute<uint16_t> smpRate;
     Seq_of_Data seq_of_Data;
 };
-
+///  Заголовок блока данных savPdu
 struct SV_HDR{
     uint16_t APPID = 0x4001;
     uint16_t lengh = 0;
@@ -45,7 +45,7 @@ struct SV_HDR{
     uint16_t reserved2 = 0;
 };
 /// All parameters of Sampled Values data bloks
-
+///  Структура объединяющая в себе все настройки для SV
 struct General_SV_Settings{
     ether_header eth_hdr;             /// Destination MAC
     uint16_t VLAN_Priority;           /// VLAN parameters
@@ -55,19 +55,23 @@ struct General_SV_Settings{
 
 };
 
+
+
+
 class SV_Frame: public EthernetFrame{
 public:
     /// поля
-    savPdu_entries attributes;
+    std::vector<u_char*> values_ptr;
+    uint32_t noASDU = 1;
 
     /// методы
 
     SV_Frame(){}
     SV_Frame(General_SV_Settings sv_settings);
 
-    void build_SV_frame(General_SV_Settings& settings);
-    void build_savPdu();
-    u_char* set_ASDU_to_frame(Attribute *attribute_ptr, u_char* frame_ptr);
+    void build_SV_frame(struct SV_HDR& sv_header, struct savPdu_entries& attributes);
+    void build_savPdu(savPdu_entries& attributes);
+    u_char* mapping_savPDU_to_frame(Attribute *attribute_ptr, u_char* frame_ptr);
     void print_frame();
 
 

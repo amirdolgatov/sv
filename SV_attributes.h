@@ -218,7 +218,7 @@ public:
 
     /// Поля
 
-    struct instant_values {
+    struct sequence_of_Data  {
         int32_t Ia{111}; int32_t Ia_Q{111};
         int32_t Ib{111}; int32_t Ib_Q{111};
         int32_t Ic{111}; int32_t Ic_Q{111};
@@ -230,13 +230,17 @@ public:
     } values;
 
 
+    /// Хранение указателей на стуктуры sequence_of_Data
+    /// указатели потребуются для последующего изменения
+
+
 
 
     /// Конструктор
 
     Seq_of_Data(uint8_t _tag): Attribute(_tag) {
         this->values = {0};
-        this->length = sizeof(struct instant_values);
+        this->length = sizeof(struct sequence_of_Data);
         this->values.Ia = 787;
     }
 
@@ -253,13 +257,13 @@ public:
         shift += tagSize;                                  std::cout << "\t\t" << std::hex << "tag " << int(this->tag[0]) <<" "<< int(this->tag[1]) << std::endl;  /// перевод указателя на следующую ячейку
         memcpy(frame_ptr + shift, &this->length, this->lengthSize);                 /// Копируем поле length в буфер
         shift += this->lengthSize;                                    std::cout << "\t\t" << std::hex << "len " << int(this->length)<< std::dec  << " = " << (this->length) << std::endl;  /// перевод указателя на следующую ячейку
-        set_value((struct instant_values*)(frame_ptr + shift));
+        set_value((struct sequence_of_Data*)(frame_ptr + shift));
 
         return shift += this->length;
 
     }
 
-    void set_value(struct instant_values *frame_ptr) {
+    void set_value(struct sequence_of_Data *frame_ptr) {
 
         frame_ptr->Ia = bswap_32(this->values.Ia);  frame_ptr->Ia_Q = bswap_32(this->values.Ia_Q);
         frame_ptr->Ib = bswap_32(this->values.Ib);  frame_ptr->Ib_Q = bswap_32(this->values.Ib_Q);

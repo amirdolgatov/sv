@@ -28,6 +28,9 @@
 
 class Raw_Socket {
 public:
+
+    /// Поля
+
     int sockfd;
     struct ifreq if_idx;
     struct ifreq if_mac;
@@ -35,7 +38,6 @@ public:
     char *sendbuf;
     struct sockaddr_ll socket_address;
     char ifName[IFNAMSIZ];
-
 
 
     /// методы

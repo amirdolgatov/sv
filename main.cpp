@@ -34,8 +34,11 @@ int main() {
     };
 
     SV_Frame frame = SV_Frame(settings);
-    frame.print_frame();
+    //frame.print_frame();
     Raw_Socket socket = Raw_Socket(frame);
+
+    for(auto k : frame.values_ptr)
+        std::cout << "shift from begin " << k - frame.raw_buffer << std::endl;
 
 //    std::thread thr1( &Raw_Socket:: send_packet, socket);
 //

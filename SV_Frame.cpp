@@ -5,86 +5,74 @@
 #include "SV_Frame.h"
 
 
-void SV_Frame::build_SV_frame(struct General_SV_Settings& sv_settings) {
+void SV_Frame::build_SV_frame(struct SV_HDR& sv_header, struct savPdu_entries& attributes) {
     /// сформируем блок savPdu
     /// set  fields APPID, length, reserved1, reserved2
 
     struct SV_HDR *pointer = (struct SV_HDR *) this->frame_payload;
 
-    pointer->APPID = bswap_16(sv_settings.sv_header.APPID);
-    pointer->lengh = bswap_16( this->attributes.savPdu.length + this->attributes.savPdu.tagSize + this->attributes.savPdu.lengthSize + 8);
-    pointer->reserved1 = bswap_16(sv_settings.sv_header.reserved1);
-    pointer->reserved2 = bswap_16(sv_settings.sv_header.reserved2);
-    this->frame_size += sizeof(struct SV_HDR);
-    //traverse(&savPdu);
-    set_ASDU_to_frame(&this->attributes.savPdu,  (u_char*)pointer + sizeof(struct SV_HDR));
+    pointer->APPID = bswap_16(sv_header.APPID);
+    pointer->lengh = bswap_16( attributes.savPdu.length + attributes.savPdu.tagSize + attributes.savPdu.lengthSize + 8);
+    pointer->reserved1 = bswap_16(sv_header.reserved1);
+    pointer->reserved2 = bswap_16(sv_header.reserved2);
 
-    this->frame_size += (this->attributes.savPdu.length + attributes.savPdu.tagSize + attributes.savPdu.lengthSize);
+    this->frame_size += sizeof(struct SV_HDR);
+
+    mapping_savPDU_to_frame(&attributes.savPdu,(u_char*)pointer + sizeof(struct SV_HDR));
+
+    /// определяем конечный размер фрейма
+    this->frame_size += (attributes.savPdu.length + attributes.savPdu.tagSize + attributes.savPdu.lengthSize);
 
 }
 
-void SV_Frame::build_savPdu() {
+void SV_Frame::build_savPdu(savPdu_entries& attributes) {
 
     /// начало формирования структуры (дерева) savPdu
     ///fill of ASDU
-    this->attributes.ASDU.add(this->attributes.svID);
-    this->attributes.ASDU.add(this->attributes.datSet);
-    this->attributes.ASDU.add(this->attributes.smpCnt);
-    this->attributes.ASDU.add(this->attributes.confrev);
-    this->attributes.ASDU.add(this->attributes.refrTm);
-    this->attributes.ASDU.add(this->attributes.smpSynch);
-    this->attributes.ASDU.add(this->attributes.smpRate);
-    this->attributes.ASDU.add(this->attributes.seq_of_Data);
+    attributes.ASDU.add(attributes.svID);
+    attributes.ASDU.add(attributes.datSet);
+    attributes.ASDU.add(attributes.smpCnt);
+    attributes.ASDU.add(attributes.confrev);
+    attributes.ASDU.add(attributes.refrTm);
+    attributes.ASDU.add(attributes.smpSynch);
+    attributes.ASDU.add(attributes.smpRate);
+    attributes.ASDU.add(attributes.seq_of_Data);
     ///fill of seqASDU
-    for (int i = 0; i < this->attributes.noASDU.value; i++) {
-        this->attributes.seqASDU.add(this->attributes.ASDU);
+    for (int i = 0; i < attributes.noASDU.value; i++) {
+        attributes.seqASDU.add(attributes.ASDU);
     }
     ///fill of savPdu
-    this->attributes.savPdu.add(this->attributes.noASDU);
-    this->attributes.savPdu.add(this->attributes.seqASDU);
+    attributes.savPdu.add(attributes.noASDU);
+    attributes.savPdu.add(attributes.seqASDU);
 
 }
 
-/// перенос значений атрибутов в массив u_char, для последующей отправки
-u_char* SV_Frame::set_ASDU_to_frame(Attribute *attribute_ptr, u_char* raw_buffer_ptr) {
+/// mapping_savPDU_to_frame - перенос значений атрибутов в массив u_char, для последующей отправки через сокет
+/// перенос данных реализован через обход графа, состоящего из вложенных друг в друга атрибутов (объекты - наследники Attribute)
+/// вместе с переносом данных происходит сохранение адресов структур с мгновенными фазными значениями
+///
+u_char* SV_Frame::mapping_savPDU_to_frame(Attribute *attribute_ptr, u_char* raw_buffer_ptr) {
 
+    /// сохранить адрес на блок Seq_of_Data
+    if (attribute_ptr->tag[0] == 0x87)
+        this->values_ptr.emplace_back(raw_buffer_ptr);
+    /// перенести данные в буфер, сдвинуть указатель на размер данных
     raw_buffer_ptr += attribute_ptr->record_TLV(raw_buffer_ptr);
 
     if (attribute_ptr->tag[0] & 0x20) {
         for (auto it: attribute_ptr->list_of_children) {
-            raw_buffer_ptr = set_ASDU_to_frame(it, raw_buffer_ptr);
+            raw_buffer_ptr = mapping_savPDU_to_frame(it, raw_buffer_ptr);
         }
     }
     return raw_buffer_ptr;
 }
 
-void SV_Frame::build(Attribute* atr_ptr){
-        traverse(atr_ptr);
-    }
-
-void SV_Frame::traverse(Attribute* atr_ptr){
-    atr_ptr->visit();
-    for (auto it : atr_ptr->list_of_children) {
-        std :: cout << "inside cycle "; atr_ptr->visit();
-        traverse(it);
-    }
-}
 
 
-/// временный метод ///
-void SV_Frame:: print_frame(){
-    std::cout << " FRAME " << std::endl;
-    for (int i = 0; i < this->frame_size + 1; ++i) {
-        std::cout << std::hex << " " << (int) raw_buffer[i] << " ";
-        if (i%16 == 0)
-            std::cout << std::endl;
-    }
-    std::cout << std::endl;
-
-}
-
-
+/// Результатом работы конструктора будет готовый отправке массив u_char
 SV_Frame::SV_Frame(General_SV_Settings sv_settings): EthernetFrame(sv_settings.eth_hdr, sv_settings.VLAN_ID, sv_settings.VLAN_Priority){
+
+    savPdu_entries attributes;
 
     attributes.savPdu = Container(0x60);
     attributes.seqASDU = Container(0xA2);
@@ -100,8 +88,12 @@ SV_Frame::SV_Frame(General_SV_Settings sv_settings): EthernetFrame(sv_settings.e
     attributes.seq_of_Data = Seq_of_Data(0x87);
     attributes.noASDU = Type_attribute<uint32_t>(sv_settings.asdu_parametrs.noASDU, 0x80);
 
-    build_savPdu();
-    build_SV_frame(sv_settings);
+    this->noASDU = attributes.noASDU.value;
+
+    build_savPdu(attributes);
+    build_SV_frame(sv_settings.sv_header, attributes);
+
+
 
 }
 
@@ -123,3 +115,30 @@ void SV_Frame::initialize_ASDU_attributes(SV_attributes& asdu_attributes, ASDU_s
 }
 
 */
+
+
+
+//void SV_Frame::build(Attribute* atr_ptr){
+//        traverse(atr_ptr);
+//    }
+//
+//void SV_Frame::traverse(Attribute* atr_ptr){
+//    atr_ptr->visit();
+//    for (auto it : atr_ptr->list_of_children) {
+//        std :: cout << "inside cycle "; atr_ptr->visit();
+//        traverse(it);
+//    }
+//}
+//
+//
+///// временный метод ///
+//void SV_Frame:: print_frame(){
+//    std::cout << " FRAME " << std::endl;
+//    for (int i = 0; i < this->frame_size + 1; ++i) {
+//        std::cout << std::hex << " " << (int) raw_buffer[i] << " ";
+//        if (i%16 == 0)
+//            std::cout << std::endl;
+//    }
+//    std::cout << std::endl;
+//
+//}
