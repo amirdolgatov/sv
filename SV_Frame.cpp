@@ -47,16 +47,22 @@ void SV_Frame::build_savPdu(savPdu_entries& attributes) {
 
 }
 
-/// mapping_savPDU_to_frame - перенос значений атрибутов в массив u_char, для последующей отправки через сокет
-/// перенос данных реализован через обход графа, состоящего из вложенных друг в друга атрибутов (объекты - наследники Attribute)
-/// вместе с переносом данных происходит сохранение адресов структур с мгновенными фазными значениями
-///
+/// mapping_savPDU_to_frame - перенос значений из дерева атрибутов (коим является объект savPdu) в массив u_char, для последующей отправки через сокет
+
+/// !!! Перенос данных реализован через обход графа, состоящего из вложенных друг в друга атрибутов (объекты - наследники класса Attribute).
+/// !!! Вместе с переносом данных происходит сохранение адресов для тех параметров (атрибутов), значения которых будут изменияться, например
+/// !!! поля smpCnt, smpSynch, мгновенные фазные значения.
 u_char* SV_Frame::mapping_savPDU_to_frame(Attribute *attribute_ptr, u_char* raw_buffer_ptr) {
 
-    /// сохранить адрес на блок Seq_of_Data
-    if (attribute_ptr->tag[0] == 0x87)
-        this->values_ptr.emplace_back(raw_buffer_ptr);
-    /// перенести данные в буфер, сдвинуть указатель на размер данных
+    /// Если это поле smpCnt, smpSynch или seqOfData, то необходимо его сохранить адрес относительно начала массива u_char
+    if (attribute_ptr->tag[0] == 0x82)
+        this->smpCnt_ptr.emplace_back(raw_buffer_ptr - this->get_raw_buffer());
+    else if (attribute_ptr->tag[0] == 0x85)
+        this->smpSynch_ptr.emplace_back(raw_buffer_ptr - this->get_raw_buffer());
+    else if (attribute_ptr->tag[0] == 0x87)
+        this->seqOfData_ptr.emplace_back(raw_buffer_ptr - this->get_raw_buffer());
+
+    /// перенести данные в буфер, сдвинуть указатель вперед, на величину записанных данных
     raw_buffer_ptr += attribute_ptr->record_TLV(raw_buffer_ptr);
 
     if (attribute_ptr->tag[0] & 0x20) {

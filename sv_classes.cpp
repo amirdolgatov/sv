@@ -2,7 +2,6 @@
 // Created by amir on 01.01.23.
 //
 
-#include "sv_classes.h"
 #include "SV_attributes.h"
 #include <cstring>
 
@@ -25,7 +24,7 @@ void Container:: add(Attribute& element) {
         this->length += (element.length + element.tagSize + element.lengthSize);
         this->tag[1] = 0x82;
         this->tagSize = 2;
-        this->lengthSize = 2;                                     /// значение длины поля value расположена в 2 байтах после метки 0x82
+        this->lengthSize = 2;                                     /// значение длины поля value расположено в 2 байтах после метки 0x82
         std::cout << " case size > 256" << std::endl;
     }
     list_of_children.emplace_back(&element);

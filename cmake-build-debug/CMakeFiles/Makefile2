@@ -81,12 +81,12 @@ clean: CMakeFiles/SV_Project.dir/clean
 CMakeFiles/SV_Project.dir/all:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/SV_Project.dir/build.make CMakeFiles/SV_Project.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/SV_Project.dir/build.make CMakeFiles/SV_Project.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/amir/Projects/sv/cmake-build-debug/CMakeFiles --progress-num=1,2,3,4,5 "Built target SV_Project"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/amir/Projects/sv/cmake-build-debug/CMakeFiles --progress-num=1,2,3,4,5,6,7 "Built target SV_Project"
 .PHONY : CMakeFiles/SV_Project.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/SV_Project.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/amir/Projects/sv/cmake-build-debug/CMakeFiles 5
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/amir/Projects/sv/cmake-build-debug/CMakeFiles 7
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/SV_Project.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/amir/Projects/sv/cmake-build-debug/CMakeFiles 0
 .PHONY : CMakeFiles/SV_Project.dir/rule

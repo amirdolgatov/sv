@@ -129,6 +129,54 @@ SV_Project/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/SV_Project.dir/build.make CMakeFiles/SV_Project.dir/build
 .PHONY : SV_Project/fast
 
+CalcModule.o: CalcModule.cpp.o
+.PHONY : CalcModule.o
+
+# target to build an object file
+CalcModule.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SV_Project.dir/build.make CMakeFiles/SV_Project.dir/CalcModule.cpp.o
+.PHONY : CalcModule.cpp.o
+
+CalcModule.i: CalcModule.cpp.i
+.PHONY : CalcModule.i
+
+# target to preprocess a source file
+CalcModule.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SV_Project.dir/build.make CMakeFiles/SV_Project.dir/CalcModule.cpp.i
+.PHONY : CalcModule.cpp.i
+
+CalcModule.s: CalcModule.cpp.s
+.PHONY : CalcModule.s
+
+# target to generate assembly for a file
+CalcModule.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SV_Project.dir/build.make CMakeFiles/SV_Project.dir/CalcModule.cpp.s
+.PHONY : CalcModule.cpp.s
+
+Frames_Buffer.o: Frames_Buffer.cpp.o
+.PHONY : Frames_Buffer.o
+
+# target to build an object file
+Frames_Buffer.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SV_Project.dir/build.make CMakeFiles/SV_Project.dir/Frames_Buffer.cpp.o
+.PHONY : Frames_Buffer.cpp.o
+
+Frames_Buffer.i: Frames_Buffer.cpp.i
+.PHONY : Frames_Buffer.i
+
+# target to preprocess a source file
+Frames_Buffer.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SV_Project.dir/build.make CMakeFiles/SV_Project.dir/Frames_Buffer.cpp.i
+.PHONY : Frames_Buffer.cpp.i
+
+Frames_Buffer.s: Frames_Buffer.cpp.s
+.PHONY : Frames_Buffer.s
+
+# target to generate assembly for a file
+Frames_Buffer.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SV_Project.dir/build.make CMakeFiles/SV_Project.dir/Frames_Buffer.cpp.s
+.PHONY : Frames_Buffer.cpp.s
+
 Raw_Socket.o: Raw_Socket.cpp.o
 .PHONY : Raw_Socket.o
 
@@ -234,6 +282,12 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... SV_Project"
+	@echo "... CalcModule.o"
+	@echo "... CalcModule.i"
+	@echo "... CalcModule.s"
+	@echo "... Frames_Buffer.o"
+	@echo "... Frames_Buffer.i"
+	@echo "... Frames_Buffer.s"
 	@echo "... Raw_Socket.o"
 	@echo "... Raw_Socket.i"
 	@echo "... Raw_Socket.s"

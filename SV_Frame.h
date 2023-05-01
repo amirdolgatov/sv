@@ -61,17 +61,45 @@ struct General_SV_Settings{
 class SV_Frame: public EthernetFrame{
 public:
     /// поля
-    std::vector<u_char*> values_ptr;
+    /// вектор хранит указатели на изменяющиеся параметры фрейма (smpCnt, smpSync и проч.)
+    std::vector<uint32_t> smpSynch_ptr;
+    std::vector<uint32_t> smpCnt_ptr;
+    std::vector<uint32_t> seqOfData_ptr;
+
     uint32_t noASDU = 1;
 
     /// методы
 
     SV_Frame(){}
+    /*!
+     *  Конструктор принимает структуру General_SV_Settings, в которой перечислены все настройки для SV
+     *  Внутри себя SV_Frame никаких параметров не хранит
+     * @param sv_settings
+     */
     SV_Frame(General_SV_Settings sv_settings);
 
+    /*!
+     * Метод заполнит "шапку" фрейма - поля перечисленные в struct SV_HDR
+     * Также метод выполнит перенос данных из структуры вложенных атрибутов в готовый к отправке массив u_char
+     * (через вызов mapping_savPDU_to_frame)
+     */
     void build_SV_frame(struct SV_HDR& sv_header, struct savPdu_entries& attributes);
+
+    /*!
+     * Метод строит структуру вложенных атрибутов (дерево арибутов)
+     * @param attributes
+     */
     void build_savPdu(savPdu_entries& attributes);
+
+    /*!
+     * Рекурсивный обход дерева атрибутов и перенос данных в указанный массив
+     * @param attribute_ptr - указатель на вершину дерева атрибутов (это атрибут savPDU, содержаший в себе все остальные атрибуты)
+     * @param frame_ptr - указатель на массив (буфер для отправки в RAW_SOCKET)
+     * @return
+     */
     u_char* mapping_savPDU_to_frame(Attribute *attribute_ptr, u_char* frame_ptr);
+
+
     void print_frame();
 
 

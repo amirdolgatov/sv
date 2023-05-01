@@ -1,4 +1,8 @@
 file(REMOVE_RECURSE
+  "CMakeFiles/SV_Project.dir/CalcModule.cpp.o"
+  "CMakeFiles/SV_Project.dir/CalcModule.cpp.o.d"
+  "CMakeFiles/SV_Project.dir/Frames_Buffer.cpp.o"
+  "CMakeFiles/SV_Project.dir/Frames_Buffer.cpp.o.d"
   "CMakeFiles/SV_Project.dir/Raw_Socket.cpp.o"
   "CMakeFiles/SV_Project.dir/Raw_Socket.cpp.o.d"
   "CMakeFiles/SV_Project.dir/SV_Frame.cpp.o"

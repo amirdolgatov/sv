@@ -85,7 +85,19 @@
 		<Unit filename="/home/amir/Projects/sv/ Sender.h">
 			<Option target="SV_Project"/>
 		</Unit>
+		<Unit filename="/home/amir/Projects/sv/CalcModule.cpp">
+			<Option target="SV_Project"/>
+		</Unit>
+		<Unit filename="/home/amir/Projects/sv/CalcModule.h">
+			<Option target="SV_Project"/>
+		</Unit>
 		<Unit filename="/home/amir/Projects/sv/EthernetFrame.h">
+			<Option target="SV_Project"/>
+		</Unit>
+		<Unit filename="/home/amir/Projects/sv/Frames_Buffer.cpp">
+			<Option target="SV_Project"/>
+		</Unit>
+		<Unit filename="/home/amir/Projects/sv/Frames_Buffer.h">
 			<Option target="SV_Project"/>
 		</Unit>
 		<Unit filename="/home/amir/Projects/sv/Raw_Socket.cpp">
